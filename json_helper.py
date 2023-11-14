@@ -21,25 +21,28 @@ def read_all_json_files(dir_name):
     return my_list
 
 
-def write_pickle(obj, output):
-    with open(output, 'wb') as f:
-        pickle.dump(obj, f)
+def write_pickle(file_path, data):
+    with open(file_path, 'wb') as f:
+        pickle.dump(data, f)
 
 
-def load_pickle(file_name):
-    f = open(file_name, "rb")
-    return pickle.load(f)
+def load_pickle(file_path):
+    with open(file_path, 'rb') as f:
+        data = pickle.load(f)
+    return data
 
 
 y = read_json('data/super_smash_bros/link.json')
 print(y)
 print(type(y))
 
+
 z = read_all_json_files('data/super_smash_bros')
 print(z)
 print(type(z))
 
-write_pickle(y, 'super_smash_characters.pickle')
-print(load_pickle('super_smash_characters.pickle'))
-
+write_pickle('super_smash_characters.pickle', z)
+zz = load_pickle('super_smash_characters.pickle')
+print(zz)
+print(type(zz))
 
